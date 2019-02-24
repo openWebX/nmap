@@ -292,7 +292,7 @@ class Nmap
                 (string) $host->status->attributes()->state,
                 isset($host->hostnames) ? $this->parseHostnames($host->hostnames->hostname) : [],
                 isset($host->ports) ? $this->parsePorts($host->ports->port) : [],
-                isset($host->os) ? $this->parseOS($host->os) : []
+                isset($host->os) ? $this->parseOS($host->os->osinfo) : []
             );
         }
 
@@ -361,16 +361,16 @@ class Nmap
         return $addresses;
     }
 
-    private function parseOS(\SimpleXMLElement $os) : array {
-        $os = [];
+    private function parseOS(\SimpleXMLElement $osinfo) : array {
+        //$os = [];
 
-        var_dump($os);
+        var_dump($osinfo);
 
-        //foreach ($os as $osinfo) {
+        /*foreach ($os as $osinfo) {
             $os[] = new OS(
-                (string) $os->osmatch->attributes()->name
+                (string) $osinfo->osmatch->attributes()->name
             );
-        //}
+        }*/
         return $os;
 
     }
