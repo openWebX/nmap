@@ -296,7 +296,6 @@ class Nmap
             );
         }
 
-        var_dump($hosts);
         return $hosts;
     }
 
@@ -361,6 +360,10 @@ class Nmap
         return $addresses;
     }
 
+    /**
+     * @param \SimpleXMLElement $osinfo
+     * @return array
+     */
     private function parseOS(\SimpleXMLElement $osinfo) : array {
         $os[] = new OS(
             (string) $osinfo->osmatch->attributes()->name
