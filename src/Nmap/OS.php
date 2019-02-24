@@ -27,7 +27,7 @@ class OS {
      * @param string $name
      * @param string $type
      */
-    public function __construct(string $name, string $type)
+    public function __construct(string $name)
     {
         $this->name = $name;
     }
