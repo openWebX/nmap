@@ -287,15 +287,16 @@ class Nmap
 
         $hosts = array();
         foreach ($xml->host as $host) {
-            var_dump($host);
             $hosts[] = new Host(
                 $this->parseAddresses($host),
                 (string) $host->status->attributes()->state,
-                isset($host->hostnames) ? $this->parseHostnames($host->hostnames->hostname) : array(),
-                isset($host->ports) ? $this->parsePorts($host->ports->port) : array()
+                isset($host->hostnames) ? $this->parseHostnames($host->hostnames->hostname) : [],
+                isset($host->ports) ? $this->parsePorts($host->ports->port) : [],
+                isset($host->os) ? $this->parseOS($host->os) : []
             );
         }
 
+        var_dump($hosts);
         return $hosts;
     }
 
@@ -358,5 +359,16 @@ class Nmap
         }
 
         return $addresses;
+    }
+
+    private function parseOS(\SimpleXMLElement $os) : array {
+        $os = [];
+
+        foreach ($os as $osinfo) {
+            $os[] = new OS(
+                (string) $osinfo->osmatch->attributes()->name
+            );
+        }
+
     }
 }
