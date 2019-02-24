@@ -292,7 +292,7 @@ class Nmap
                 (string) $host->status->attributes()->state,
                 isset($host->hostnames) ? $this->parseHostnames($host->hostnames->hostname) : [],
                 isset($host->ports) ? $this->parsePorts($host->ports->port) : [],
-                isset($host->os) ? $this->parseOS($host->os->osinfo) : []
+                isset($host->os) ? $this->parseOS($host->os) : []
             );
         }
 
@@ -371,7 +371,7 @@ class Nmap
                 (string) $osinfo->osmatch->attributes()->name
             );
         }*/
-        return $os;
+        return [];
 
     }
 }
