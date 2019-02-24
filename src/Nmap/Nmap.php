@@ -369,6 +369,7 @@ class Nmap
                 (string) $osinfo->osmatch->attributes()->name
             );
         }
+        return $os;
 
     }
 }
