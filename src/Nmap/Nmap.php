@@ -364,7 +364,7 @@ class Nmap
     private function parseOS(\SimpleXMLElement $osinfo) : array {
         //$os = [];
 
-        var_dump($osinfo->osmatch);
+        var_dump($osinfo->osmatch->attributes()->name);
 
         /*foreach ($os as $osinfo) {
             $os[] = new OS(
