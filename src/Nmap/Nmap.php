@@ -287,6 +287,8 @@ class Nmap
 
         $hosts = array();
         foreach ($xml->host as $host) {
+            var_dump($host->os);
+
             $hosts[] = new Host(
                 $this->parseAddresses($host),
                 (string) $host->status->attributes()->state,
@@ -296,7 +298,7 @@ class Nmap
             );
         }
 
-        var_dump($hosts);
+        //var_dump($hosts);
         return $hosts;
     }
 

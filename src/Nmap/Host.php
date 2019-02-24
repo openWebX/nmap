@@ -49,20 +49,15 @@ class Host
      */
     private $ports;
 
-    /**
-     * Host constructor.
-     *
-     * @param array  $addresses
-     * @param string $state
-     * @param array  $hostnames
-     * @param array  $ports
-     */
-    public function __construct(array $addresses, string $state, array $hostnames = [], array $ports = [])
+    private $os;
+
+    public function __construct(array $addresses, string $state, array $hostnames = [], array $ports = [], array $os = [])
     {
         $this->addresses = $addresses;
         $this->state     = $state;
         $this->hostnames = $hostnames;
         $this->ports     = $ports;
+        $this->os        = $os;
     }
 
     /**
@@ -153,5 +148,9 @@ class Host
         return array_filter($this->ports, function ($port) {
             return $port->isClosed();
         });
+    }
+
+    public function getOS() : array {
+        return $this->os;
     }
 }
