@@ -287,8 +287,6 @@ class Nmap
 
         $hosts = array();
         foreach ($xml->host as $host) {
-            var_dump($host->os);
-
             $hosts[] = new Host(
                 $this->parseAddresses($host),
                 (string) $host->status->attributes()->state,
@@ -366,11 +364,13 @@ class Nmap
     private function parseOS(\SimpleXMLElement $os) : array {
         $os = [];
 
-        foreach ($os as $osinfo) {
+        var_dump($os);
+
+        //foreach ($os as $osinfo) {
             $os[] = new OS(
-                (string) $osinfo->osmatch->attributes()->name
+                (string) $os->osmatch->attributes()->name
             );
-        }
+        //}
         return $os;
 
     }
